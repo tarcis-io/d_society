@@ -1,0 +1,2 @@
+### ./d.society
+### decentralized.society
