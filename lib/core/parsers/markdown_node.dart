@@ -37,6 +37,36 @@ final class MarkdownHeadingNode extends MarkdownBlockNode {
   final int level;
 }
 
+final class MarkdownBlockQuoteNode extends MarkdownBlockNode {
+  MarkdownBlockQuoteNode(
+    Iterable<MarkdownBlockNode> children,
+  ) : children = List.unmodifiable(children);
+
+  final List<MarkdownBlockNode> children;
+}
+
+final class MarkdownCodeBlockNode extends MarkdownBlockNode {
+  const MarkdownCodeBlockNode(
+    this.text,
+  );
+
+  final String text;
+}
+
+final class MarkdownThematicBreakNode extends MarkdownBlockNode {
+  const MarkdownThematicBreakNode();
+}
+
+final class MarkdownHtmlBlockNode extends MarkdownBlockNode {
+  const MarkdownHtmlBlockNode(
+    this.text,
+    this.language,
+  );
+
+  final String text;
+  final String? language;
+}
+
 @immutable
 sealed class MarkdownInlineNode extends MarkdownNode {
   const MarkdownInlineNode();
