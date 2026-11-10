@@ -13,6 +13,10 @@ final class MarkdownDocumentNode extends MarkdownNode {
   final List<MarkdownBlockNode> children;
 
   @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is MarkdownDocumentNode && listEquals(children, other.children);
+
+  @override
   int get hashCode => Object.hashAll(children);
 }
 
@@ -27,6 +31,10 @@ final class MarkdownParagraphNode extends MarkdownBlockNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownInlineNode> children;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is MarkdownParagraphNode && listEquals(children, other.children);
 
   @override
   int get hashCode => Object.hashAll(children);
@@ -49,6 +57,10 @@ final class MarkdownBlockQuoteNode extends MarkdownBlockNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownBlockNode> children;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is MarkdownBlockQuoteNode && listEquals(children, other.children);
 
   @override
   int get hashCode => Object.hashAll(children);
@@ -122,6 +134,10 @@ sealed class MarkdownInlineParentNode extends MarkdownInlineNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownInlineNode> children;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is MarkdownInlineParentNode && listEquals(children, other.children);
 
   @override
   int get hashCode => Object.hashAll(children);
