@@ -19,6 +19,25 @@ sealed class MarkdownBlockNode extends MarkdownNode {
   const MarkdownBlockNode();
 }
 
+final class MarkdownParagraphNode extends MarkdownBlockNode {
+  MarkdownParagraphNode(
+    Iterable<MarkdownInlineNode> children,
+  ) : children = List.unmodifiable(children);
+
+  final List<MarkdownInlineNode> children;
+}
+
+final class MarkdownHeadingNode extends MarkdownBlockNode {
+  MarkdownHeadingNode(
+    Iterable<MarkdownInlineNode> children, {
+    required this.level,
+  })  : children = List.unmodifiable(children),
+        assert(level >= 1 && level <= 6, 'level must be between 1 and 6');
+
+  final List<MarkdownInlineNode> children;
+  final int level;
+}
+
 @immutable
 sealed class MarkdownInlineNode extends MarkdownNode {
   const MarkdownInlineNode();
