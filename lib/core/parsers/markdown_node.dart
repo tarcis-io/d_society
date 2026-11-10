@@ -47,10 +47,12 @@ final class MarkdownBlockQuoteNode extends MarkdownBlockNode {
 
 final class MarkdownCodeBlockNode extends MarkdownBlockNode {
   const MarkdownCodeBlockNode(
-    this.text,
-  );
+    this.text, {
+    this.language,
+  });
 
   final String text;
+  final String? language;
 }
 
 final class MarkdownThematicBreakNode extends MarkdownBlockNode {
@@ -60,16 +62,22 @@ final class MarkdownThematicBreakNode extends MarkdownBlockNode {
 final class MarkdownHtmlBlockNode extends MarkdownBlockNode {
   const MarkdownHtmlBlockNode(
     this.text,
-    this.language,
   );
 
   final String text;
-  final String? language;
 }
 
 @immutable
 sealed class MarkdownInlineNode extends MarkdownNode {
   const MarkdownInlineNode();
+}
+
+final class MarkdownCodeSpanNode extends MarkdownInlineNode {
+  const MarkdownCodeSpanNode(
+    this.text,
+  );
+
+  final String text;
 }
 
 @immutable
