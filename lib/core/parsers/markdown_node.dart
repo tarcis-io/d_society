@@ -5,8 +5,7 @@ sealed class MarkdownNode {
   const MarkdownNode();
 }
 
-@immutable
-sealed class MarkdownDocumentNode extends MarkdownNode {
+final class MarkdownDocumentNode extends MarkdownNode {
   MarkdownDocumentNode(
     Iterable<MarkdownBlockNode> children,
   ) : children = List.unmodifiable(children);
