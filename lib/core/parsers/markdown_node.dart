@@ -11,6 +11,9 @@ final class MarkdownDocumentNode extends MarkdownNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownBlockNode> children;
+
+  @override
+  int get hashCode => Object.hashAll(children);
 }
 
 @immutable
@@ -24,6 +27,9 @@ final class MarkdownParagraphNode extends MarkdownBlockNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownInlineNode> children;
+
+  @override
+  int get hashCode => Object.hashAll(children);
 }
 
 final class MarkdownHeadingNode extends MarkdownBlockNode {
@@ -43,6 +49,9 @@ final class MarkdownBlockQuoteNode extends MarkdownBlockNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownBlockNode> children;
+
+  @override
+  int get hashCode => Object.hashAll(children);
 }
 
 final class MarkdownCodeBlockNode extends MarkdownBlockNode {
@@ -65,6 +74,12 @@ final class MarkdownHtmlBlockNode extends MarkdownBlockNode {
   );
 
   final String text;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is MarkdownHtmlBlockNode && text == other.text;
+
+  @override
+  int get hashCode => text.hashCode;
 }
 
 @immutable
@@ -78,6 +93,12 @@ final class MarkdownTextNode extends MarkdownInlineNode {
   );
 
   final String text;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is MarkdownTextNode && text == other.text;
+
+  @override
+  int get hashCode => text.hashCode;
 }
 
 final class MarkdownCodeSpanNode extends MarkdownInlineNode {
@@ -86,6 +107,12 @@ final class MarkdownCodeSpanNode extends MarkdownInlineNode {
   );
 
   final String text;
+
+  @override
+  bool operator ==(Object other) => identical(this, other) || other is MarkdownCodeSpanNode && text == other.text;
+
+  @override
+  int get hashCode => text.hashCode;
 }
 
 @immutable
@@ -95,4 +122,7 @@ sealed class MarkdownInlineParentNode extends MarkdownInlineNode {
   ) : children = List.unmodifiable(children);
 
   final List<MarkdownInlineNode> children;
+
+  @override
+  int get hashCode => Object.hashAll(children);
 }
