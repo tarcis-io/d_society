@@ -72,6 +72,14 @@ sealed class MarkdownInlineNode extends MarkdownNode {
   const MarkdownInlineNode();
 }
 
+final class MarkdownTextNode extends MarkdownInlineNode {
+  const MarkdownTextNode(
+    this.text,
+  );
+
+  final String text;
+}
+
 final class MarkdownCodeSpanNode extends MarkdownInlineNode {
   const MarkdownCodeSpanNode(
     this.text,
